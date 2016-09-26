@@ -10,7 +10,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.luzkzieniewicz.gmail.pigame.MainActivity">
+    tools:context="com.luzkzieniewicz.gmail.pigame.MainActivity"
+    android:background="@android:color/holo_red_light">
 
 
     <com.google.android.gms.ads.AdView
@@ -22,13 +23,48 @@
         ads:adSize="BANNER"
         ads:adUnitId="@string/banner_ad_unit_id"/>
 
-    <EditText
+    <Button
+        android:text="Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:text="Name"
-        android:ems="10"
-        android:layout_alignParentTop="true"
+        android:layout_marginBottom="32dp"
+        android:id="@+id/hungerButton"
+        android:layout_above="@+id/adView"
+        android:layout_alignLeft="@+id/adView"
+        android:layout_alignStart="@+id/adView"
+        style="@android:style/Widget.Button"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:srcCompat="@android:drawable/btn_star_big_on"
         android:layout_centerHorizontal="true"
-        android:id="@+id/editText"/>
+        android:layout_marginBottom="132dp"
+        android:id="@+id/pigImageView"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"/>
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mudButton"
+        style="@android:style/Widget.Button"
+        android:elevation="0dp"
+        android:layout_alignBaseline="@+id/hungerButton"
+        android:layout_alignBottom="@+id/hungerButton"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:text="Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/funButton"
+        style="@android:style/Widget.Button"
+        android:layout_alignBaseline="@+id/mudButton"
+        android:layout_alignBottom="@+id/mudButton"
+        android:layout_alignRight="@+id/adView"
+        android:layout_alignEnd="@+id/adView"/>
+
+
 </RelativeLayout>
