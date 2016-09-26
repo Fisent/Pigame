@@ -24,7 +24,7 @@
         ads:adUnitId="@string/banner_ad_unit_id"/>
 
     <Button
-        android:text="Button"
+        android:text="@string/hunger_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
@@ -32,20 +32,11 @@
         android:layout_above="@+id/adView"
         android:layout_alignLeft="@+id/adView"
         android:layout_alignStart="@+id/adView"
-        style="@android:style/Widget.Button"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        ads:srcCompat="@android:drawable/btn_star_big_on"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="132dp"
-        android:id="@+id/pigImageView"
-        android:adjustViewBounds="false"
-        android:cropToPadding="false"/>
+        style="@android:style/Widget.Button"
+        android:onClick="onHungerClick"/>
 
     <Button
-        android:text="Button"
+        android:text="@string/mud_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/mudButton"
@@ -53,10 +44,11 @@
         android:elevation="0dp"
         android:layout_alignBaseline="@+id/hungerButton"
         android:layout_alignBottom="@+id/hungerButton"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="onMudClick"/>
 
     <Button
-        android:text="Button"
+        android:text="@string/fun_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/funButton"
@@ -64,7 +56,18 @@
         android:layout_alignBaseline="@+id/mudButton"
         android:layout_alignBottom="@+id/mudButton"
         android:layout_alignRight="@+id/adView"
-        android:layout_alignEnd="@+id/adView"/>
+        android:layout_alignEnd="@+id/adView"
+        android:onClick="onFunClick"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        ads:srcCompat="@android:drawable/btn_star_big_on"
+        android:id="@+id/pigImageView"
+        android:adjustViewBounds="false"
+        android:cropToPadding="false"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>

@@ -1,7 +1,10 @@
 package com.luzkzieniewicz.gmail.pigame;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.Window;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -16,6 +19,7 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
         //TODO
@@ -26,5 +30,20 @@ public class MainActivity extends AppCompatActivity
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
 
+    }
+
+    public void onHungerClick(View view)
+    {
+
+    }
+
+    public void onMudClick(View view)
+    {
+
+    }
+
+    public void onFunClick(View view)
+    {
+        startActivity(new Intent(this, FunActivity.class));
     }
 }

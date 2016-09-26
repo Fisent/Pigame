@@ -5,4 +5,8 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
 
+    <string name="hunger_button">HUNGER</string>
+    <string name="mud_button">MUD</string>
+    <string name="fun_button">FUN</string>
+
 </resources>
