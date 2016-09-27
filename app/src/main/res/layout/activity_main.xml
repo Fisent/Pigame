@@ -36,18 +36,6 @@
         android:onClick="onHungerClick"/>
 
     <Button
-        android:text="@string/mud_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/mudButton"
-        style="@android:style/Widget.Button"
-        android:elevation="0dp"
-        android:layout_alignBaseline="@+id/hungerButton"
-        android:layout_alignBottom="@+id/hungerButton"
-        android:layout_centerHorizontal="true"
-        android:onClick="onMudClick"/>
-
-    <Button
         android:text="@string/fun_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -86,6 +74,18 @@
         android:layout_centerHorizontal="true"
         android:id="@+id/debugTextView2"
         android:textSize="18sp"/>
+
+    <Button
+        android:text="@string/mud_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mudButton"
+        style="@android:style/Widget.Button"
+        android:elevation="0dp"
+        android:onClick="onMudClick"
+        android:layout_alignBaseline="@+id/hungerButton"
+        android:layout_alignBottom="@+id/hungerButton"
+        android:layout_centerHorizontal="true"/>
 
 
 </RelativeLayout>
