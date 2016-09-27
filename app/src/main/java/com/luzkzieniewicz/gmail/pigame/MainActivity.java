@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity
 
     public void onFunClick(View view)
     {
-        fun = Math.min(100, fun+10);
-        paintButtons();
-        //startActivity(new Intent(this, FunActivity.class));
+        //fun = Math.min(100, fun+10);
+        //paintButtons();
+        startActivity(new Intent(this, FunActivity.class));
     }
 }

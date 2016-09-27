@@ -19,6 +19,8 @@
         </activity>
         <activity android:name=".FunActivity">
         </activity>
+        <activity android:name=".GameActivity">
+        </activity>
     </application>
 
 </manifest>
