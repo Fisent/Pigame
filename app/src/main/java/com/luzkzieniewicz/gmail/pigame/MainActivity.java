@@ -1,6 +1,5 @@
 package com.luzkzieniewicz.gmail.pigame;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -15,11 +14,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
@@ -30,7 +24,6 @@ public class MainActivity extends AppCompatActivity
     public int hunger;
     public int mud;
     public int fun;
-    public int hoovdollars;
     public Date date;
 
     public static final int delay = 1000;
@@ -84,7 +77,6 @@ public class MainActivity extends AppCompatActivity
             }
         },delay);
 
-        deserialize(this);
     }
 
     //called at the start or resume of aplication, to give an idle prizes
@@ -101,11 +93,7 @@ public class MainActivity extends AppCompatActivity
 
     public void paintButtons()
     {
-        if(running)
-        {
-            date = new Date();
-            serialize(this);
-        }
+        if(running) date = new Date();
 
 
         ((TextView)findViewById(R.id.debugTextView)).setText("h: " + hunger + " m: " + mud + " f: " + fun);
@@ -140,44 +128,5 @@ public class MainActivity extends AppCompatActivity
         fun = Math.min(100, fun+10);
         paintButtons();
         //startActivity(new Intent(this, FunActivity.class));
-    }
-
-
-
-    public void serialize(Context context)
-    {
-        SerializationPackage sp = new SerializationPackage(hunger, mud, fun, hoovdollars, new Date());
-        try {
-            FileOutputStream fileOutputStream = context.openFileOutput("save", Context.MODE_PRIVATE);
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-            objectOutputStream.writeObject(sp);
-            objectOutputStream.close();
-            fileOutputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void deserialize(Context context)
-    {
-        SerializationPackage serializationPackage = null;
-        try {
-            FileInputStream fileInputStream = context.openFileInput("save");
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            serializationPackage = (SerializationPackage) objectInputStream.readObject();
-            objectInputStream.close();
-            fileInputStream.close();
-            hunger = serializationPackage.getHunger();
-            mud = serializationPackage.getMud();
-            fun = serializationPackage.getFun();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-
-
     }
 }
