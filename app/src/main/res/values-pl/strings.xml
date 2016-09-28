@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Pigame</string>
+    <string name="fun_button">Zabawa</string>
+    <string name="hunger_button">Głód</string>
+    <string name="mud_button">Błotko</string>
+</resources>
