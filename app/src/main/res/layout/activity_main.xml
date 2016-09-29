@@ -63,7 +63,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        ads:srcCompat="@drawable/pig"
+        ads:srcCompat="@drawable/fun_icon"
         android:id="@+id/pigImageView"
         android:adjustViewBounds="false"
         android:cropToPadding="false"
