@@ -20,13 +20,4 @@
         android:id="@+id/startButton"
         android:onClick="onStartButton"
         />
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/startButton"
-        android:id="@+id/scrollView">
-
-    </ScrollView>
 </RelativeLayout>
