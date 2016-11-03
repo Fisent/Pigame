@@ -1,12 +1,11 @@
 package com.luzkzieniewicz.gmail.pigame;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.ads.AdRequest;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity
     public int fun;
     public Date date;
 
-    public static final int delay = 1000;
+    public static final int delay = 10000;
 
     @Override
     protected void onResume()
@@ -50,6 +49,7 @@ public class MainActivity extends AppCompatActivity
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_main);
 
+
         //TODO
         //change the number when app will be added
         MobileAds.initialize(getApplicationContext(), "ca-app-pub-3940256099942544~3347511713");
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-
+        paintButtons();
         running = true;
 
         (new Handler()).postDelayed(new Runnable()

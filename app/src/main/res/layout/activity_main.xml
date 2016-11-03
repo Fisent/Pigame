@@ -69,7 +69,8 @@
         android:cropToPadding="false"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:background="@null"/>
+        android:background="@null"
+        />
 
     <TextView
         android:text="TextView"
