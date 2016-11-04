@@ -1,5 +1,6 @@
 package com.luzkzieniewicz.gmail.pigame;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +14,11 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Date;
 
 public class MainActivity extends AppCompatActivity
@@ -25,7 +31,7 @@ public class MainActivity extends AppCompatActivity
     public int fun;
     public Date date;
 
-    public static final int delay = 10000;
+    public static final int delay = 1000;
 
     @Override
     protected void onResume()
@@ -33,6 +39,7 @@ public class MainActivity extends AppCompatActivity
         super.onResume();
         timeCalculation();
         running = true;
+        deserialize(this);
     }
 
     @Override
@@ -40,6 +47,7 @@ public class MainActivity extends AppCompatActivity
     {
         super.onStop();
         running = false;
+        serialize(this);
     }
 
     @Override
@@ -57,8 +65,8 @@ public class MainActivity extends AppCompatActivity
         AdView mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
-        paintButtons();
         running = true;
+        paintButtons();
 
         (new Handler()).postDelayed(new Runnable()
         {
@@ -70,7 +78,7 @@ public class MainActivity extends AppCompatActivity
                     mud = Math.max(0, mud - 1);
                     fun = Math.max(0, fun - 1);
                     hunger = Math.max(0, hunger - 1);
-
+                    serialize(getApplicationContext());
                     paintButtons();
                 }
                 (new Handler()).postDelayed(this,delay);
@@ -82,6 +90,7 @@ public class MainActivity extends AppCompatActivity
     //called at the start or resume of aplication, to give an idle prizes
     public void timeCalculation()
     {
+        deserialize(this);
         if(date!=null)
         {
             Date current = new Date();
@@ -93,7 +102,10 @@ public class MainActivity extends AppCompatActivity
 
     public void paintButtons()
     {
-        if(running) date = new Date();
+        if(running)
+        {
+            if(!deserialize(this))date = new Date();
+        }
 
 
         ((TextView)findViewById(R.id.debugTextView)).setText("h: " + hunger + " m: " + mud + " f: " + fun);
@@ -109,24 +121,76 @@ public class MainActivity extends AppCompatActivity
         if(mud >90) (findViewById(R.id.mudButton)).setBackgroundColor(getResources().getColor(R.color.green));
         else if(mud > 30) (findViewById(R.id.mudButton)).setBackgroundColor(getResources().getColor(R.color.yellow));
         else (findViewById(R.id.mudButton)).setBackgroundColor(getResources().getColor(R.color.red));
+
+        serialize(this);
     }
 
     public void onHungerClick(View view)
     {
         hunger = Math.min(100, hunger+10);
+        serialize(this);
         paintButtons();
     }
 
     public void onMudClick(View view)
     {
         mud = Math.min(100, mud+10);
+        serialize(this);
         paintButtons();
     }
 
     public void onFunClick(View view)
     {
         //fun = Math.min(100, fun+10);
+        //serialize(this);
         //paintButtons();
         startActivity(new Intent(this, FunActivity.class));
+    }
+
+    public boolean serialize(Context c)
+    {
+        FileOutputStream fos = null;
+        try
+        {
+            fos = c.openFileOutput("save", Context.MODE_PRIVATE);
+
+            ObjectOutputStream os = new ObjectOutputStream(fos);
+            os.writeObject(date);
+            int[] tab = new int[3];
+            tab[0] = hunger;
+            tab[1] = mud;
+            tab[2] = fun;
+            os.writeObject(tab);
+            os.close();
+            fos.close();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
+    public boolean deserialize(Context c)
+    {
+        try
+        {
+            FileInputStream fis = c.openFileInput("save");
+            ObjectInputStream is = new ObjectInputStream(fis);
+            date = (Date) is.readObject();
+            int[] tab =(int[]) is.readObject();
+            hunger = tab[0];
+            fun = tab[1];
+            mud = tab[2];
+            is.close();
+            fis.close();
+        }
+        catch(Exception e)
+        {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
     }
 }
